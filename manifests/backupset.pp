@@ -54,7 +54,7 @@ define mysql_zrm::backupset (
 
   # full backup cron
   @@cron {"mysql_zrm ${title} full backup":
-    ensure  => present,
+    ensure  => $ensure,
     command => "/usr/bin/zrm-pre-scheduler --action backup --backup-set ${title} --backup-level 0 --interval ${fullinterval}",
     user    => 'root',
     hour    => $fullhours,
@@ -65,7 +65,7 @@ define mysql_zrm::backupset (
   if (! empty($inchours)) {
     # incremental backup cron
     @@cron {"mysql_zrm ${title} incremental backup":
-      ensure  => present,
+      ensure  => $ensure,
       command => "/usr/bin/zrm-pre-scheduler --action backup --backup-set ${title} --backup-level 1 --interval ${incinterval}",
       user    => 'root',
       hour    => $inchours,
