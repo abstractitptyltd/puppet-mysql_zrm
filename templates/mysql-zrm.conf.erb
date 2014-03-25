@@ -1,0 +1,207 @@
+# Managed by puppet at <%= @server %>
+# Any changes will be overwritten
+#
+
+<%- if @comment != '' -%>
+comment=<%= @comment %>
+<%- end -%>
+
+<%- if @db_list -%>
+databases=<%= @db_list %>
+<%- end -%>
+
+routines=1
+single-transaction=1
+
+<%- if @backup_db_user != '' -%>
+user="<%= @backup_db_user %>"
+<%- end -%>
+<%- if @backup_db_pass != '' -%>
+password="<%= @backup_db_pass %>"
+<%- end -%>
+<%- if @backup_db_server != '' -%>
+host="<%= @backup_db_server %>"
+<%- end -%>
+<%- if @backup_db_port != '' -%>
+port=<%= @backup_db_port %>
+<%- end -%>
+<%- if @db_socket != '' -%>
+socket=<%= @db_socket %>
+<%- end -%>
+
+backup-level=<%= @backup_level %>
+
+backup-mode=<%= @backup_mode %>
+
+<%- if @backup_type != '' -%>
+backup-type=<%= @backup_type %>
+<%- end -%>
+
+<%- if @backup_destination -%>
+destination=<%= @backup_destination %>
+<%- end -%>
+
+<%- if @retention_policy != '' -%>
+retention-policy=<%= @retention_policy %>
+<%- end -%>
+
+replication=<%= @replication %>
+
+<%- if @compression != '' -%>
+compress=1
+compress-plugin=/usr/bin/gzip
+compress-mysqldump-onthefly=1
+<%- end -%>
+
+<%- if @default_character_set != '' -%>
+default-character-set=<%= @default_character_set %>
+<%- end -%>
+
+tmpdir=<%= @temp_dir %>
+
+verbose=<%= @verbose %>
+
+<%- if @report_email != '' -%>
+mailto="<%= @report_email %>"
+<%- end -%>
+
+
+# Size of LVM snapshot. This parameter is optional and  is required only 
+# for "raw" backup-mode and if the MySQL database data are stored in 
+# LVM logical volumes. 
+# A size suffix of k for kilobyte, m for megabyte, g for gigabyte 
+# or t for terabyte
+#
+#lvm-snapshot=10M
+
+# specifies the plugin for snapshot operations
+#
+#snapshot-plugin="/usr/share/mysql-zrm/plugins/lvm-snapshot.pl"
+
+# This parameter should be set to 1 if backups should be encrypted. 
+# The "encrypt-plugin" parameter must be configured. Default: There is no
+# data encryption.
+#encrypt=1
+
+# This parameter specifies that the program that should be used for 
+# backup data encryption. "decrypt-option" parameter should also be specified.
+#encrypt-plugin="/usr/share/mysql-zrm/plugins/encrypt.pl"
+
+# This specifies the option to be passed to the encryption 
+# program specified as "encrypt-plugin" parameter for decryption.
+#decrypt-option="-d"
+
+# ssl-options are arguments that are passed to MySQL client commands 
+# for SSL connection to the MySQL server. This parameter is optional and is
+# required only if MySQL server allows SSL connections.
+#
+#ssl-options="--ssl --ssl-ca=file1 --ssl-cert=file2 --ssl-key=file3"
+
+# Directory where MySQL commands can be found. The parameter is optional.
+#
+#mysql-binpath="/opt/lampp/bin"
+
+# Directory where MySQL binary logs can be found. The parameter is optional.
+#
+#mysql-binlog-path="/var/log/mysql"
+
+# The list of backup reports that are generated after each backup run if 
+# "html-report-directory" parameter is specified.
+# If this parameter is not specified, "backup-status-info" report is generated.
+# Valid report names are : backup-method-info, backup-status-info,
+#                          backup-retention-info, backup-performance-info,
+#                          restore-full-info, restore-incr-info,
+#                          replication-info, backup-app-performance-info
+# See mysql-zrm-reporter(1) for details of backup reports.
+# Multiple report names should be separated by ",".
+#
+#html-reports=backup-status-info,backup-performance-info
+
+# Directory in which Text/HTML reports will be created by mysql-zrm-reporter(1)
+# tool. If this parameter is specified, the mysql-zrm-reporter(1) creates the
+# backup reports in this directory after each successful or unsuccessful 
+# backup run.
+# Text reports will be created under "Text" sub-directory
+# HTML reports will be created under "Html" sub-directory
+#
+#html-report-directory=<%= @backup_destination %>/reports
+
+# If backup reports are required as RSS feed, "webserver-url" parameter must
+# be specified. The value must be set to a valid location on the web server 
+# in which HTML reports are located and that URL can be used by
+# administrator/user to browse HTML reports and can get to the RSS feeds.
+# If this parameter is not specified, backup reports are not generated as 
+# RSS feeds. The list of reports that are available as RSS feed is specified
+# in "html-reports".
+#
+#webserver-url=http://<%= @backup_server %>/reports/html/
+
+# Location of RSS header file. Administrators can customize RSS channel 
+# properties using this file. A template for RSS header is available in
+# /usr/share/mysql-zrm/plugins/RSS.header file. Location of RSS header
+# must be provided if "webserver-url" is specified.
+#
+rss-header-location=/etc/mysql-zrm/
+
+#
+# ZRM plugin parameters. 
+# ZRM provides plugin interfaces to allow MySQL administrators to customize 
+# the backup to their environment.
+#
+
+# COPY plugin: Only one copy-plugin must be configured for a backup set.
+#
+# Socket Copy plugin is to used to transfer backup files from MySQL server to
+# the machine running ZRM for MySQL with sockets.
+#
+# Please read the Notes at /usr/share/doc/mysql-zrm/README-plugin-socket-copy
+#
+copy-plugin=/usr/share/mysql-zrm/plugins/socket-copy.pl
+
+# SSH Copy plugin is to used to transfer backup files from MySQL server to
+# the machine running ZRM for MySQL with ssh
+#
+# Please read the Notes at /usr/share/doc/mysql-zrm/README-plugin-ssh-copy
+#
+#copy-plugin=/usr/share/mysql-zrm/plugins/ssh-copy.pl
+
+# PRE-BACKUP plugin: Plugin that will be called before a backup run for 
+# the backup set.
+#pre-backup-plugin="/usr/share/mysql-zrm/plugins/pre-backup.pl"
+
+# Set of parameters passed to the pre-backup-plugin. These parameters are
+# passed to "pre-backup-plugin" before a backup run for the backup set.
+# "pre-backup-plugin" parameter must be specified.
+#pre-backup-plugin-options="option1 option2"
+
+# POST-BACKUP plugin: Plugin that will be called after a backup run for 
+# the backup set.
+#post-backup-plugin="/usr/share/mysql-zrm/plugins/post-backup.pl"
+
+# Set of parameters passed to the post-backup-plugin. These parameters are
+# passed to "post-backup-plugin" after a backup run for the backup set.
+# "post-backup-plugin" parameter must be specified.
+#post-backup-plugin-options="option1 option2"
+
+# PRE-SCHEDULER plugin: Plugin that can be used to dynamically determine the 
+# start time for a backup run.
+#pre-scheduler-plugin="/usr/share/mysql-zrm/plugins/pre-scheduler.pl"
+
+# ZRM Plugin configuration parameters
+
+# This parameter is used by the encrypt plugin and 
+# specifies the file containing the passphrase.
+#passfile="/tmp/a.pass"
+
+# This parameter is used by ssh-plugin.pl plugin to specify the user to be 
+# used to ssh to the  remote host 
+#ssh-user="root"
+
+# This parameter is used by the ssh-copy.pl and socket-copy.pl plugins
+# to specify the location of mysql client binaries on the remote host.
+#remote-mysql-binpath="/usr/bin"
+
+# This parameter is used by the socket-copy.pl plugin to specify the port
+# to be opened on the remote host.
+#socket-remote-port="25300"
+
