@@ -26,8 +26,6 @@
 class mysql_zrm {
 
   include mysql_zrm::params
-  include mysql_zrm::install
-
   $backup_server = $mysql_zrm::params::backup_server
   $db_servers = $mysql_zrm::params::db_servers
 
