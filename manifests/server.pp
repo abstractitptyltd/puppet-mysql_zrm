@@ -10,6 +10,7 @@ class mysql_zrm::server {
 
   $temp_dir = $mysql_zrm::params::temp_dir
   $backup_destination = $mysql_zrm::params::backup_destination
+  $default_character_set =$mysql_zrm::params::default_character_set
   $backup_level = $mysql_zrm::params::backup_level
   $backup_mode = $mysql_zrm::params::backup_mode
   $backup_type = $mysql_zrm::params::backup_type
@@ -18,6 +19,7 @@ class mysql_zrm::server {
   $backup_db_pass = $mysql_zrm::params::backup_db_pass
   $backup_db_server = $mysql_zrm::params::backup_db_server
   $backup_db_port = $mysql_zrm::params::backup_db_port
+  $backup_db_socket = $mysql_zrm::params::backup_db_socket
   $report_email = $mysql_zrm::params::report_email
   $compression = $mysql_zrm::params::compression
   $real_pkg_source_server = $mysql_zrm::params::real_pkg_source_server

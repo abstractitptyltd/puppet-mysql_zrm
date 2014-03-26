@@ -14,7 +14,7 @@ define mysql_zrm::backupset (
   $backup_type = 'regular',
   $backup_db_user = '',
   $backup_db_pass = '',
-  $backup_db_server = $::fqdn,
+  $backup_db_server = $::clientcert,
   $backup_db_port = '',
   $backup_db_socket = '',
   $default_character_set = '',
@@ -24,6 +24,7 @@ define mysql_zrm::backupset (
   $incinterval = 'daily',
   $fullinterval = 'daily',
   $verbose = '0',
+  $tmp_dir = ''
 ) {
 
   include mysql_zrm::params
