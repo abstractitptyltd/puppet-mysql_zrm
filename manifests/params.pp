@@ -49,7 +49,7 @@ class mysql_zrm::params (
   $backup_mode = 'raw',
   $backup_type = 'regular',
   $comment = '',
-  $compression = '1',
+  $compression = '',
   $version = '3.0',
   $pkg_version = '3.0',
   $pkg_source = 'http://www.zmanda.com/downloads/community/ZRM-MySQL',
@@ -68,6 +68,7 @@ class mysql_zrm::params (
 
   case $::osfamily {
     'Debian':  {
+      $gzip_binary = '/bin/gzip'
       $pkg_provider = 'dpkg'
       $pkg_name_server = "mysql-zrm_${pkg_version}.0_all.deb"
       $pkg_name_client = "mysql-zrm-client_${pkg_version}.0_all.deb"
@@ -75,6 +76,7 @@ class mysql_zrm::params (
       $real_pkg_source_client = "${pkg_source}/${pkg_version}/Debian/${pkg_name_client}"
     }
     'RedHat':  {
+      $gzip_binary = '/bin/gzip'
       $pkg_provider = undef
       $pkg_name_server = "MySQL-zrm_${pkg_version}.1_noarch.rpm"
       $pkg_name_client = "MySQL-zrm-client_${pkg_version}.1_noarch.rpm"

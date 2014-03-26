@@ -47,9 +47,9 @@ retention-policy=<%= @retention_policy %>
 
 replication=<%= @replication %>
 
-<%- if @compression != '' -%>
+<%- if @compression -%>
 compress=1
-compress-plugin=/usr/bin/gzip
+compress-plugin=<%= @gzip_binary %>
 compress-mysqldump-onthefly=1
 <%- end -%>
 

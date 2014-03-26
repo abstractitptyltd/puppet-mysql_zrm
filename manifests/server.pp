@@ -22,6 +22,7 @@ class mysql_zrm::server {
   $backup_db_socket = $mysql_zrm::params::backup_db_socket
   $report_email = $mysql_zrm::params::report_email
   $compression = $mysql_zrm::params::compression
+  $gzip_binary = $mysql_zrm::params::gzip_binary
   $real_pkg_source_server = $mysql_zrm::params::real_pkg_source_server
   $pkg_name_server = $mysql_zrm::params::pkg_name_server
   $pkg_provider = $mysql_zrm::params::pkg_provider

@@ -19,7 +19,7 @@ define mysql_zrm::backupset (
   $backup_db_socket = '',
   $default_character_set = '',
   $report_email = '',
-  $compression = true,
+  $compression = undef,
   $replication = '0',
   $incinterval = 'daily',
   $fullinterval = 'daily',
@@ -28,7 +28,7 @@ define mysql_zrm::backupset (
 ) {
 
   include mysql_zrm::params
-
+  $gzip_binary = $mysql_zrm::params::gzip_binary
 
   $backup_server = $mysql_zrm::params::backup_server
 
