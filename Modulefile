@@ -1,5 +1,5 @@
 name    'abstractit-mysql_zrm'
-version '0.1.2'
+version '0.1.3'
 source 'https://github.com/abstractitptyltd/puppet-mysql_zrm'
 author 'Abstract IT'
 license 'Apache-2.0'
