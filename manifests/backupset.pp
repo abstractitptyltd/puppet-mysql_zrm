@@ -14,7 +14,7 @@ define mysql_zrm::backupset (
   $backup_type = 'regular',
   $backup_db_user = '',
   $backup_db_pass = '',
-  $backup_db_server = $::clientcert,
+  $backup_db_server = '',
   $backup_db_port = '',
   $backup_db_socket = '',
   $default_character_set = '',
